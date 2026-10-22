@@ -1,0 +1,10 @@
+import { existsSync, readFileSync } from 'node:fs';
+let errors = 0;
+const check=(ok,label)=>{ console.log((ok?'PASS: ':'FAIL: ')+label); if(!ok)errors++; };
+const app=readFileSync('src/App.jsx','utf8');
+check(existsSync('src/components/sections/Process.jsx'), 'src/components/sections/Process.jsx');
+check(existsSync('src/components/sections/WhyUs.jsx'), 'src/components/sections/WhyUs.jsx');
+check(app.includes('<Process />'), 'Mounted Process');
+check(app.includes('<WhyUs />'), 'Mounted WhyUs');
+if(errors) process.exit(1);
+console.log('PASS: Module 05 verification complete.');

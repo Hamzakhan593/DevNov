@@ -1,0 +1,12 @@
+import { existsSync, readFileSync } from 'node:fs';
+let errors = 0;
+const check=(ok,label)=>{ console.log((ok?'PASS: ':'FAIL: ')+label); if(!ok)errors++; };
+const app=readFileSync('src/App.jsx','utf8');
+check(existsSync('scripts/seo.mjs'), 'scripts/seo.mjs');
+check(existsSync('public/favicon.svg'), 'public/favicon.svg');
+check(existsSync('public/_headers'), 'public/_headers');
+check(existsSync('DEPLOYMENT-GUIDE.md'), 'DEPLOYMENT-GUIDE.md');
+const html=readFileSync('index.html','utf8'); check(html.includes('DevNov SEO managed:start')&&((html.includes('noindex,nofollow') || html.includes('index,follow')) || html.includes('index,follow')),'SEO metadata initialized');
+check(existsSync('public/robots.txt'),'Robots draft file');
+if(errors) process.exit(1);
+console.log('PASS: Module 08 verification complete.');

@@ -1,0 +1,11 @@
+import { existsSync, readFileSync } from 'node:fs';
+const app = readFileSync('src/App.jsx', 'utf8');
+let errors = 0;
+const pass = (ok, message) => { console.log((ok ? 'PASS: ' : 'FAIL: ') + message); if(!ok) errors++; };
+for(const key of ['Hero','FeaturedWork','TechMarquee','Services','Process','WhyUs','FAQ','Team','Contact']) pass(app.includes(`<${key} />`), `${key} section is mounted`);
+pass(existsSync('scripts/audit-site.mjs'),'Audit script exists');
+pass(existsSync('DEPLOYMENT-GUIDE.md'),'Deployment guide exists');
+pass(existsSync('src/data/projects.json'),'Project manager data store preserved');
+pass(existsSync('src/data/team.json'),'Team manager data store preserved');
+if(errors) process.exit(1);
+console.log('PASS: Module 09 source smoke test completed.');

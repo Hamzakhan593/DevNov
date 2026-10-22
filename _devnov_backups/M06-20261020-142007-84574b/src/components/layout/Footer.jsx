@@ -1,0 +1,16 @@
+import { ArrowUpRight, Github, Globe2, Mail, MoveUpRight } from 'lucide-react';
+import { agency } from '../../data/agencyData.js';
+const validHttps = (url) => typeof url === 'string' && /^https:\/\/[a-z0-9.-]+(?:\:[0-9]+)?(?:[/?#][^\s]*)?$/i.test(url.trim());
+const validEmail = (email) => typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+
+export default function Footer() {
+  const email = validEmail(agency.email) ? agency.email.trim() : '';
+  const links = (agency.socialLinks || []).filter((link) => validHttps(link.url));
+  return (
+    <footer className="border-t border-white/[.09] bg-[#070c15]" aria-label="Footer"><div className="mx-auto max-w-[1240px] px-5 pt-16 sm:px-8 lg:px-10"><div className="grid gap-12 border-b border-white/[.09] pb-14 lg:grid-cols-[1.5fr_1fr_1fr] lg:gap-20">
+      <div><a href="#top" className="inline-flex items-center gap-3 text-2xl font-bold tracking-[-.06em] text-white"><span className="grid size-11 place-items-center rounded-xl bg-indigo-500 text-[24px] font-semibold">D.</span>Devnov<span className="text-indigo-400">.</span></a><p className="mt-6 max-w-[410px] text-sm leading-8 text-[#9daac0]">{agency.summary}</p>{email && <a href={`mailto:${email}`} className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-indigo-200 hover:text-white"><Mail className="size-4" aria-hidden="true" />{email}</a>}</div>
+      <div><h2 className="text-xs font-semibold uppercase tracking-[.18em] text-white">Explore</h2><nav className="mt-6 grid gap-4 text-sm text-[#9daac0]" aria-label="Footer navigation"><a href="#work" className="hover:text-white">Selected work</a><a href="#services" className="hover:text-white">Services</a><a href="#process" className="hover:text-white">Our process</a><a href="#faq" className="hover:text-white">FAQ</a><a href="#contact" className="hover:text-white">Contact</a></nav></div>
+      <div><h2 className="text-xs font-semibold uppercase tracking-[.18em] text-white">Connect</h2><div className="mt-6 grid gap-4">{links.length ? links.map((link) => <a key={link.url} target="_blank" rel="noopener noreferrer" href={link.url} className="inline-flex items-center gap-2 text-sm text-[#9daac0] hover:text-white">{link.id === 'github' ? <Github className="size-4" aria-hidden="true"/> : <Globe2 className="size-4" aria-hidden="true"/>}{link.label || 'External profile'} <ArrowUpRight className="size-3.5" aria-hidden="true"/></a>) : <p className="text-sm leading-7 text-[#9daac0]">Verified social profiles will appear here when added.</p>}<a href="#contact" className="mt-2 inline-flex w-fit items-center gap-2 rounded-lg border border-indigo-400/30 px-4 py-2.5 text-xs font-semibold text-indigo-200 transition hover:border-indigo-300"><MoveUpRight className="size-4" aria-hidden="true"/> Start a project</a></div></div>
+    </div><div className="flex flex-col gap-3 py-7 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between"><span>© {new Date().getFullYear()} Devnov. Software & product engineering.</span><span>Designed with clarity. Built for the web.</span></div></div></footer>
+  );
+}

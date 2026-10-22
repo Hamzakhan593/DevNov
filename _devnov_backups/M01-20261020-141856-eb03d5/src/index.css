@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-page: #090D16;
+  --color-surface: #111827;
+  --color-surface-raised: #182234;
+  --color-brand: #6366F1;
+  --color-positive: #10B981;
+  --color-body: #F9FAFB;
+  --color-muted: #9CA3AF;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root {
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #F9FAFB;
+  background: #090D16;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { min-width: 320px; min-height: 100vh; margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible { outline: 2px solid #a5b4fc; outline-offset: 4px; }
+::selection { color: #fff; background: #4f46e5; }
+
+.hero-grid {
+  background-image: linear-gradient(to right, rgba(136,152,189,.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(136,152,189,.045) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: linear-gradient(to bottom, #000 5%, transparent 93%);
+}
+.hero-surface { background: radial-gradient(ellipse 70% 75% at 86% 28%,rgba(48,56,123,.15),transparent 72%), #090D16; }
+.gradient-heading { background-image: linear-gradient(110deg, #a8adff 0%, #737cfe 45%, #8bc7ff 96%); background-clip: text; -webkit-background-clip: text; color: transparent; }
+.studio-window::after { content: ""; pointer-events: none; position: absolute; inset: 0; background: linear-gradient(126deg, rgba(255,255,255,.045), transparent 37%); }
+.eyebrow { color: #a5a8ff; font-size: .75rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+.mobile-nav-link { display: flex; min-height: 46px; align-items: center; border-radius: 10px; padding: 10px 14px; font-size: 14px; font-weight: 500; color: #cbd5e1; }
+.mobile-nav-link:hover, .mobile-nav-link:focus-visible { background: rgba(255,255,255,.075); color: #fff; }
+.skip-link { position: fixed; left: 16px; top: -100px; z-index: 100; border-radius: 10px; background: #fff; padding: 12px 16px; color: #111827; font-weight: 600; }
+.skip-link:focus { top: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

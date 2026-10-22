@@ -1,0 +1,12 @@
+import { existsSync, readFileSync } from 'node:fs';
+let errors = 0;
+const check=(ok,label)=>{ console.log((ok?'PASS: ':'FAIL: ')+label); if(!ok)errors++; };
+const app=readFileSync('src/App.jsx','utf8');
+check(existsSync('src/components/sections/Contact.jsx'), 'src/components/sections/Contact.jsx');
+check(existsSync('src/components/layout/Footer.jsx'), 'src/components/layout/Footer.jsx');
+check(existsSync('CONTACT-GUIDE.md'), 'CONTACT-GUIDE.md');
+check(app.includes('<Contact />'), 'Mounted Contact');
+const nav=readFileSync('src/components/layout/Navbar.jsx','utf8');check(nav.includes("'contact'"),'Contact navbar link');
+const contact=readFileSync('src/components/sections/Contact.jsx','utf8');check(contact.includes('https://api.web3forms.com/submit')&&contact.includes('result.success !== true'),'Form verifies provider acceptance');
+if(errors) process.exit(1);
+console.log('PASS: Module 07 verification complete.');

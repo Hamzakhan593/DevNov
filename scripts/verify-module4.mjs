@@ -1,0 +1,12 @@
+import { existsSync, readFileSync } from 'node:fs';
+let errors = 0;
+const check=(ok,label)=>{ console.log((ok?'PASS: ':'FAIL: ')+label); if(!ok)errors++; };
+const app=readFileSync('src/App.jsx','utf8');
+check(existsSync('src/components/sections/Services.jsx'), 'src/components/sections/Services.jsx');
+check(existsSync('src/components/sections/TechMarquee.jsx'), 'src/components/sections/TechMarquee.jsx');
+check(existsSync('src/components/ui/SectionHeader.jsx'), 'src/components/ui/SectionHeader.jsx');
+check(app.includes('<Services />'), 'Mounted Services');
+check(app.includes('<TechMarquee />'), 'Mounted TechMarquee');
+check(app.indexOf('<TechMarquee />') < app.indexOf('<FeaturedWork />'), 'Technology strip before work section');
+if(errors) process.exit(1);
+console.log('PASS: Module 04 verification complete.');
