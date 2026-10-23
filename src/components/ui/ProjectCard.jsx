@@ -1,6 +1,6 @@
 import { ArrowRight, Code2, ExternalLink, Github, ImageIcon } from 'lucide-react';
 const safeLink = (value) => typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value.trim());
-const safeImage = (value) => typeof value === 'string' && /^\/projects\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp|avif)$/i.test(value);
+const safeImage = (value) => typeof value === 'string' && (safeLink(value) || /^\/projects\/[a-zA-Z0-9._-]+\.(png|jpg|jpeg|webp|avif)$/i.test(value));
 export default function ProjectCard({ project, onDetails }) {
   const tools = Array.isArray(project.technologies) ? project.technologies : [];
   return (

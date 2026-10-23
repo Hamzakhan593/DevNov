@@ -1,18 +1,30 @@
-# Devnov deployment and SEO readiness
+# DevNov deployment and SEO readiness
 
-This is a purely static React + Vite website. Run the following in `E:\DevNov`:
+The React/Vite frontend still deploys as static files, but its portfolio CMS now
+uses Supabase for the database, authentication, and private project media. See
+[BACKEND-GUIDE.md](./BACKEND-GUIDE.md) to create the Supabase project, run the
+schema/seed SQL, and promote the first administrator before deployment.
+
+Run the following in `E:\DevNov`:
 
 ```powershell
+npm.cmd run backend:check
 npm.cmd run check
 npm.cmd run audit:site
 npm.cmd run build
 ```
 
-Deploy the `dist/` folder to a static host such as Cloudflare Pages (build command `npm run build`, output `dist`) or Netlify. Use HTTPS and configure your real domain with your provider. You do **not** need an API server or SQL database to host the site.
+Deploy `dist/` to a static host such as Cloudflare Pages (build command `npm run build`, output `dist`) or Netlify. Add `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` to that host's **build environment**, then rebuild. You do not need a separate Node API server, but the Supabase backend is required for live CMS content.
+
+Ensure `/admin` rewrites to `/index.html`; `public/_redirects` already covers
+Cloudflare/Netlify-style hosts. Configure the equivalent SPA rewrite if your
+host uses a different format.
 
 **Before going public:**
 
-- Add real projects with `npm run projects:add` and publish them, with screenshots and only factual outcomes.
+- Add projects, services, and technologies through `/admin`. For each client
+  project, deploy it first, then add its real HTTPS link and approved screenshot
+  before publishing it.
 - Add owner/team profiles with `npm run team:add` and record consent before publishing; no invented people or testimonials.
 - Set a verified email in `src/data/agencyData.js`, optionally Calendly or Web3Forms (`CONTACT-GUIDE.md`). Confirm actual form delivery.
 - Add verified social profile links to `agency.socialLinks` in `src/data/agencyData.js`.

@@ -1,0 +1,4 @@
+# Serve the React admin dashboard when it is opened directly on a static host.
+# API and storage requests go directly to the configured Supabase project.
+/admin /index.html 200
+/admin/* /index.html 200

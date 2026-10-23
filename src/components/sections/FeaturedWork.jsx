@@ -1,22 +1,33 @@
 import { useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, ArrowUpRight, FolderOpen, Layers3 } from 'lucide-react';
-import { projects as legacyProjects } from '../../data/agencyData.js';
-import managedProjects from '../../data/projects.json';
+import { ArrowRight, ArrowUpRight, FolderOpen } from 'lucide-react';
 import { demoEnabled, demoProjects } from '../../data/demoContent.js';
+import { usePublicContent } from '../../context/PublicContentContext.jsx';
 import ProjectCard from '../ui/ProjectCard.jsx';
 import CaseStudyDialog from '../ui/CaseStudyDialog.jsx';
 
 const isPublished = (project) => project && project.published !== false && project.title && project.summary;
 const slugOf = (project) => String(project.slug || project.id || '');
-const publishedProjects = [...managedProjects, ...legacyProjects].filter(isPublished).filter((project, index, entries) => entries.findIndex((other) => slugOf(other) === slugOf(project)) === index).sort((a, b) => Number(Boolean(b.featured)) - Number(Boolean(a.featured)));
-const showingDemo = demoEnabled && publishedProjects.length === 0;
-const allProjects = showingDemo ? demoProjects : publishedProjects;
+const compareProjects = (left, right) => {
+  const featuredDifference = Number(Boolean(right.featured)) - Number(Boolean(left.featured));
+  if (featuredDifference) return featuredDifference;
+  const leftOrder = Number.isFinite(left.sortOrder) ? left.sortOrder : Number.MAX_SAFE_INTEGER;
+  const rightOrder = Number.isFinite(right.sortOrder) ? right.sortOrder : Number.MAX_SAFE_INTEGER;
+  return leftOrder - rightOrder;
+};
 
 export default function FeaturedWork() {
+  const { projects: publicProjects } = usePublicContent();
   const [activeCategory, setActiveCategory] = useState('All');
   const [showAll, setShowAll] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const publishedProjects = useMemo(() => (Array.isArray(publicProjects) ? publicProjects : [])
+    .filter(isPublished)
+    .filter((project, index, entries) => entries.findIndex((other) => slugOf(other) === slugOf(project)) === index)
+    .sort(compareProjects), [publicProjects]);
+  const showingDemo = demoEnabled && publishedProjects.length === 0;
+  const allProjects = useMemo(() => showingDemo ? demoProjects : publishedProjects, [publishedProjects, showingDemo]);
+
   useEffect(() => {
     const syncWithLocation = () => {
       const slug = new URLSearchParams(window.location.search).get('project');
@@ -25,7 +36,7 @@ export default function FeaturedWork() {
     syncWithLocation();
     window.addEventListener('popstate', syncWithLocation);
     return () => window.removeEventListener('popstate', syncWithLocation);
-  }, []);
+  }, [allProjects]);
   const openProject = (project) => {
     const url = new URL(window.location.href);
     url.searchParams.set('project', slugOf(project));

@@ -14,10 +14,19 @@ const featured = file('src/components/sections/FeaturedWork.jsx');
 const card = file('src/components/ui/ProjectCard.jsx');
 const dialog = file('src/components/ui/CaseStudyDialog.jsx');
 const managed = file('scripts/manage-projects.mjs');
+const publicContent = file('src/context/PublicContentContext.jsx');
+const repository = file('src/lib/contentRepository.js');
 
 check(app.includes('import FeaturedWork from') && app.includes('<FeaturedWork />'), 'Featured work mounted between hero and services');
 check(navbar.includes("'work'") && navbar.includes('activeSections'), 'Work navigation points to real section');
-check(featured.includes('id="work"') && featured.includes('allProjects') && featured.includes('managedProjects'), 'Real managed and legacy content displayed');
+check(
+  featured.includes('id="work"')
+    && featured.includes('allProjects')
+    && featured.includes('usePublicContent')
+    && publicContent.includes('managedProjects')
+    && repository.includes('fetchPublicContent'),
+  'Real backend content with safe static fallback displayed',
+);
 check(featured.includes('activeCategory') && featured.includes('setShowAll'), 'Category filters and Show all work');
 check(featured.includes('selectedProject') && dialog.includes('role="dialog"') && dialog.includes('aria-modal="true"'), 'Accessible case-study details');
 check(dialog.includes("event.key === 'Escape'") && dialog.includes("event.key === 'Tab'") && dialog.includes('previousFocus.current'), 'Dialog Escape, focus trap and focus restore');

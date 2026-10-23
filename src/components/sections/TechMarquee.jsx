@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   ArrowUpRight,
   Atom,
@@ -19,7 +20,7 @@ import {
   ScanSearch,
   Smartphone,
 } from 'lucide-react';
-import { technologies } from '../../data/agencyData.js';
+import { usePublicContent } from '../../context/PublicContentContext.jsx';
 
 // DevNov M17: display and icon mappings only; actual labels live in agencyData.js.
 const stackIcons = {
@@ -56,7 +57,7 @@ const automationIds = new Set([
 ]);
 
 function StackItem({ tech, isAi }) {
-  const Icon = stackIcons[tech.id] || Wrench;
+  const Icon = stackIcons[tech.iconKey] || stackIcons[tech.slug] || Wrench;
   return (
     <div className={`dn17-chip ${isAi ? 'dn17-chip-ai' : 'dn17-chip-core'}`} title={tech.category}>
       <span className="dn17-chip-icon" aria-hidden="true"><Icon size={19} strokeWidth={2.1} /></span>
@@ -65,10 +66,22 @@ function StackItem({ tech, isAi }) {
   );
 }
 
+function isAiTechnology(tech) {
+  return tech.group === 'ai'
+    || automationIds.has(tech.slug || tech.id)
+    || /(^|\W)(ai|automation)(\W|$)/i.test(`${tech.category || ''} ${tech.label || ''}`);
+}
+
 export default function TechMarquee() {
-  if (!technologies.length) return null;
-  const core = technologies.filter((tech) => !automationIds.has(tech.id));
-  const ai = technologies.filter((tech) => automationIds.has(tech.id));
+  const { technologies } = usePublicContent();
+  const { core, ai } = useMemo(() => {
+    const items = Array.isArray(technologies) ? technologies : [];
+    return {
+      core: items.filter((tech) => !isAiTechnology(tech)),
+      ai: items.filter(isAiTechnology),
+    };
+  }, [technologies]);
+  if (!core.length && !ai.length) return null;
 
   return (
     <section className="dn17-stack" aria-labelledby="dn17-stack-title">
