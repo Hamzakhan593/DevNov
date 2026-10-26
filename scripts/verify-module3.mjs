@@ -21,11 +21,14 @@ check(app.includes('import FeaturedWork from') && app.includes('<FeaturedWork />
 check(navbar.includes("'work'") && navbar.includes('activeSections'), 'Work navigation points to real section');
 check(
   featured.includes('id="work"')
-    && featured.includes('allProjects')
+    && featured.includes('publishedProjects')
     && featured.includes('usePublicContent')
-    && publicContent.includes('managedProjects')
-    && repository.includes('fetchPublicContent'),
-  'Real backend content with safe static fallback displayed',
+    && featured.includes('projectsState')
+    && publicContent.includes('configuredFallbackContent')
+    && publicContent.includes('projectsState')
+    && repository.includes('fetchPublicContent')
+    && repository.includes('!item.demo'),
+  'Real backend content remains truthful when the portfolio is empty or unavailable',
 );
 check(featured.includes('activeCategory') && featured.includes('setShowAll'), 'Category filters and Show all work');
 check(featured.includes('selectedProject') && dialog.includes('role="dialog"') && dialog.includes('aria-modal="true"'), 'Accessible case-study details');

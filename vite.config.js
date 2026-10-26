@@ -7,5 +7,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'react-vendor': ['react', 'react-dom'],
+          'motion-vendor': ['framer-motion'],
+          'supabase-vendor': ['@supabase/supabase-js'],
+        },
+      },
+    },
   },
 });

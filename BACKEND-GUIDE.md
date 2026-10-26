@@ -10,6 +10,8 @@ media. The public site reads only records that are marked **Published**.
 2. In **SQL Editor**, run [`supabase/schema.sql`](./supabase/schema.sql), then
    [`supabase/seed.sql`](./supabase/seed.sql). The seed retains the existing
    services and technology stack; it does not overwrite later admin edits.
+   It also adds clearly labelled, **unpublished** `[Template]` project drafts
+   once, so the former fictional demo cards are never public portfolio work.
 3. In **Authentication → Users**, create or invite the first owner account.
    The database trigger creates a non-privileged profile automatically. In SQL
    Editor, promote that exact account:
@@ -50,6 +52,21 @@ media. The public site reads only records that are marked **Published**.
 DevNov never embeds, proxies, or takes ownership of client sites. It presents a
 case study and opens the independently hosted project in a new tab, which is
 the right trust-building flow for a portfolio.
+
+## Former sample projects
+
+The old illustrative cards are disabled in the public frontend. The revised
+seed keeps those concepts only as internal `[Template]` drafts, with no hosted
+link, screenshot, featured flag, or published flag. They are hidden by Row
+Level Security from public visitors.
+
+If your Supabase project was seeded before this change and you want those
+reference drafts in the admin area, run the current `seed.sql` again. It uses
+insert-only, slug-based seeding: existing services, technologies, templates,
+and administrator edits are never overwritten. Before a template is ever
+published, replace its title, summary, challenge, solution, outcome, and tech
+stack with verified project information, add an approved screenshot, and set
+the real HTTPS live URL.
 
 ## Security model
 

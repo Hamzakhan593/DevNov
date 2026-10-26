@@ -1,11 +1,13 @@
 /**
- * DevNov demo-preview data. All people and product screenshots are fictional concepts.
- * This file NEVER writes to real content managers, client records or team.json.
- * Set demoEnabled to false to hide previews manually; adding actual published data
- * automatically replaces the corresponding demo section.
- * IMPORTANT: disable demo mode before a public release.
+ * Retired local preview data. Every record below is fictional and must never
+ * render as portfolio proof. The project concepts are also available as
+ * clearly-labelled, unpublished Supabase templates via supabase/seed.sql.
+ *
+ * This flag intentionally stays false in every build. It also keeps the
+ * illustrative team placeholders out of the public site until real profiles
+ * are supplied.
  */
-export const demoEnabled = true;
+export const demoEnabled = false;
 export const demoProjects = [
   {
     "id": "demo-clinicflow",

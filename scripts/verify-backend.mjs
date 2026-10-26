@@ -53,5 +53,15 @@ const app = read('src/App.jsx');
 if (app.includes('PublicContentProvider') && app.includes('AdminPage') && app.includes("'/admin'")) pass('Public content provider and protected admin route are mounted');
 else fail('App does not mount public content provider and admin route');
 
+const publicContent = read('src/context/PublicContentContext.jsx');
+if (publicContent.includes('projectsState') && publicContent.includes("projects: projectsAvailable ? sortContent(result.projects) : []")) pass('Configured backend never falls back to static portfolio projects');
+else fail('Configured backend may expose static portfolio projects after a backend failure');
+
+const seed = read('supabase/seed.sql');
+const demos = read('src/data/demoContent.js');
+const repository = read('src/lib/contentRepository.js');
+if (demos.includes('export const demoEnabled = false') && repository.includes('item.published && !item.demo') && seed.includes('template-clinicflow') && seed.includes('seeded_template_projects') && seed.includes('on conflict (slug) do nothing')) pass('Fictional samples are disabled publicly and retained only as idempotent draft templates');
+else fail('Demo portfolio policy or idempotent template seeding is missing');
+
 if (failures) process.exit(1);
 console.log('PASS: Backend source wiring validation completed.');

@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  ArrowRight, Bot, Globe2, Laptop, MessageSquare, Play,
+  ArrowRight, BadgeCheck, Bot, Globe2, Laptop, MessageSquare, Play,
   Rocket, Smartphone, Sparkles, PencilRuler,
 } from 'lucide-react';
 import { agency } from '../../data/agencyData.js';
@@ -12,10 +12,10 @@ const reveal = (reduced, delay = 0) => ({
 });
 
 const highlights = [
-  { Icon: Laptop, title: 'Web, Mobile & AI Solutions', description: 'From idea to launch' },
-  { Icon: PencilRuler, title: 'Clean UI/UX & Development', description: 'Beautiful and functional' },
-  { Icon: MessageSquare, title: 'Clear Communication', description: 'Direct, clear and reliable' },
-  { Icon: Rocket, title: 'Startup-Friendly Process', description: 'Built around your idea' },
+  { Icon: Laptop, title: 'Web, mobile & AI', description: 'One connected product team' },
+  { Icon: PencilRuler, title: 'Product design', description: 'Clear flows before code' },
+  { Icon: MessageSquare, title: 'Working together', description: 'Direct, useful communication' },
+  { Icon: Rocket, title: 'Flexible delivery', description: 'A practical path to launch' },
 ];
 
 const capabilities = [
@@ -40,11 +40,12 @@ function HeroArtwork() {
         decoding="async"
         fetchPriority="high"
       />
-      <div className="dn15-handnote" aria-hidden="true">
-        Better Software<br />Brighter Tomorrows
-        <svg viewBox="0 0 64 36" focusable="false" aria-hidden="true" className="dn15-sketcharrow">
-          <path d="M2 4 Q23 27 56 23 M46 15 L58 23 L48 33" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+      <div className="dn21-hero-proof" aria-hidden="true">
+        <span className="dn21-hero-proof-icon"><Sparkles size={16} strokeWidth={2.3} /></span>
+        <span>
+          <strong>Start with clarity</strong>
+          <small>Goals, users and a useful next step</small>
+        </span>
       </div>
       <div className="dn15-highlights">
         {highlights.map(({ Icon, title, description }) => (
@@ -67,22 +68,26 @@ export default function Hero() {
     <section className="dn15-hero" aria-labelledby="hero-heading">
       <div className="dev-container dn15-hero-main">
         <div className="dn15-hero-copy">
-          <motion.p {...reveal(reduced, 0.03)} className="eyebrow">Ideas. Products. Real impact.</motion.p>
+          <motion.p {...reveal(reduced, 0.03)} className="eyebrow">Strategy, design &amp; engineering</motion.p>
           <motion.h1
             {...reveal(reduced, 0.10)}
             id="hero-heading"
             className="dn15-title"
           >
-            We build digital products that <span>move the world.</span>
+            Digital products built to <span>move your business forward.</span>
           </motion.h1>
           <motion.p {...reveal(reduced, 0.18)} className="dn15-description">
-            {agency.brandName} helps ambitious teams design, build and scale powerful digital experiences — from first idea to final launch.
+            {agency.brandName} partners with founders and growing teams to turn complex ideas into clear, useful web, mobile and AI products—from early strategy through launch.
           </motion.p>
+          <motion.div {...reveal(reduced, 0.21)} className="dn21-hero-signals" aria-label="How DevNov approaches product work">
+            <span><BadgeCheck className="size-4" aria-hidden="true" /> Clear scope before build</span>
+            <span><BadgeCheck className="size-4" aria-hidden="true" /> Designed around real users</span>
+          </motion.div>
           <motion.div {...reveal(reduced, 0.25)} className="dn15-cta-row">
-            <a href="#contact" className="dev-primary dn15-main-cta">Start a Project <ArrowRight className="size-5" aria-hidden="true" /></a>
+            <a href="#contact" className="dev-primary dn15-main-cta">Discuss your project <ArrowRight className="size-5" aria-hidden="true" /></a>
             <a href="#work" className="dev-secondary dn15-second-cta">
               <span className="dn15-play-icon"><Play className="size-3 fill-white" aria-hidden="true" /></span>
-              See Our Work
+              Explore our work
             </a>
           </motion.div>
         </div>

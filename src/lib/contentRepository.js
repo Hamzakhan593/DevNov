@@ -212,14 +212,16 @@ export function normalizeProjects(records, technologies = [], relationships = []
   const technologyLabels = relationshipsByProject(relationships, technologies);
   return (Array.isArray(records) ? records : [])
     .map((record) => normalizeProject(record, { technologies: technologyLabels.get(String(record?.id)) || [] }))
-    .filter((item) => item.title && item.summary && item.published);
+    // A legacy `demo` marker is never portfolio proof, even in an
+    // unconfigured/local fallback. Supabase project rows do not use it.
+    .filter((item) => item.title && item.summary && item.published && !item.demo);
 }
 
 async function normalizeProjectsWithSignedImages(records, technologies, relationships) {
   const technologyLabels = relationshipsByProject(relationships, technologies);
   const projects = await Promise.all((Array.isArray(records) ? records : []).map(async (record) => {
     const project = normalizeProject(record, { technologies: technologyLabels.get(String(record?.id)) || [] });
-    if (!project.title || !project.summary || !project.published) return null;
+    if (!project.title || !project.summary || !project.published || project.demo) return null;
     const signedImage = await resolveProjectImageUrl(record);
     return signedImage ? { ...project, image: signedImage } : project;
   }));

@@ -5,5 +5,40 @@ const validEmail = (email) => typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^
 export default function Footer() {
   const email = validEmail(agency.email) ? agency.email.trim() : '';
   const links = (agency.socialLinks || []).filter((link) => validHttps(link.url));
-  return <footer className="border-t border-[#334251] bg-[#101b27] text-white" aria-label="Footer"><div className="dev-container flex flex-col gap-5 py-7 lg:flex-row lg:items-center lg:justify-between"><a href="#top" className="inline-flex items-center gap-1.5 text-[19px] font-extrabold tracking-tight"><Zap className="size-7 fill-[#ff4b16] text-[#ff4b16]" />{agency.brandName}</a><nav aria-label="Footer navigation" className="flex flex-wrap gap-x-5 gap-y-2 text-[11px] text-[#d1dae3]"><a href="#top" className="hover:text-white">Home</a><a href="#why-devnov" className="hover:text-white">About</a><a href="#services" className="hover:text-white">Services</a><a href="#work" className="hover:text-white">Work</a><a href="#process" className="hover:text-white">Process</a><a href="#faq" className="hover:text-white">FAQ</a><a href="#contact" className="hover:text-white">Contact</a></nav><div className="flex flex-wrap items-center gap-3">{links.map((link) => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" className="text-[#d6e2ea] transition hover:text-[#ff784d]" aria-label={link.label || 'External social profile'}>{link.id === 'github' ? <Github className="size-4" /> : <Globe2 className="size-4" />}</a>)}{email && <a href={`mailto:${email}`} className="text-[#d6e2ea] transition hover:text-[#ff784d]" aria-label="Email DevNov"><Mail className="size-4" /></a>}<a href="#contact" className="inline-flex items-center gap-1 text-xs font-bold text-[#ff835b]">Let's talk <ArrowUpRight className="size-4" /></a></div></div><div className="border-t border-[#30404d]"><div className="dev-container flex flex-col justify-between gap-3 py-5 text-[10px] text-[#9bafbf] sm:flex-row"><span>© {new Date().getFullYear()} {agency.brandName}. All rights reserved.</span><span>Thoughtful software. Real impact. <ArrowRight className="ml-1 inline size-3 text-[#ff4b16]" /></span></div></div></footer>;
+  const navLinks = [
+    { href: '#top', label: 'Home' },
+    { href: '#why-devnov', label: 'About' },
+    { href: '#services', label: 'Services' },
+    { href: '#work', label: 'Work' },
+    { href: '#process', label: 'Process' },
+    { href: '#faq', label: 'FAQ' },
+  ];
+
+  return (
+    <footer className="dn20-footer" aria-label="Footer">
+      <div className="dev-container dn20-footer-main">
+        <div className="dn20-footer-brand">
+          <a href="#top" className="inline-flex items-center gap-1.5 text-[22px] font-extrabold tracking-[-.06em] text-white">
+            <Zap className="size-8 fill-[#ff4b16] text-[#ff4b16]" aria-hidden="true" />{agency.brandName}
+          </a>
+          <p>{agency.summary}</p>
+        </div>
+
+        <nav aria-label="Footer navigation" className="dn20-footer-nav">
+          <p>Explore</p>
+          <div>{navLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</div>
+        </nav>
+
+        <div className="dn20-footer-contact">
+          <p className="dn20-footer-label">Have a project in mind?</p>
+          <a href="#contact" className="dn20-footer-cta">Start a conversation <ArrowUpRight className="size-4" aria-hidden="true" /></a>
+          <div className="dn20-footer-socials">
+            {links.map((link) => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label || 'External social profile'}>{link.id === 'github' ? <Github className="size-4" /> : <Globe2 className="size-4" />}</a>)}
+            {email && <a href={`mailto:${email}`} aria-label="Email DevNov"><Mail className="size-4" /></a>}
+          </div>
+        </div>
+      </div>
+      <div className="dn20-footer-bottom"><div className="dev-container"><span>© {new Date().getFullYear()} {agency.brandName}. All rights reserved.</span><span>Thoughtful software. Real impact. <ArrowRight className="ml-1 inline size-3 text-[#ff6a3b]" aria-hidden="true" /></span></div></div>
+    </footer>
+  );
 }
