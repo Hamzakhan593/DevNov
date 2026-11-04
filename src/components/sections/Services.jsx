@@ -21,15 +21,15 @@ export default function Services() {
     <section id="services" className="dev-section bg-white" aria-labelledby="services-heading">
       <div className="dev-container">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <SectionHeader id="services-heading" eyebrow="What we do" title="End-to-end digital product development." />
+          <SectionHeader id="services-heading" eyebrow="What we do" title="End-to-end digital product development" />
           <div className="flex max-w-[515px] flex-col gap-3 sm:flex-row sm:items-end sm:gap-8 lg:pb-1"><p className="dev-copy">From strategy to scale, we provide the expertise to turn bold ideas into powerful, real-world solutions.</p><a href="#contact" className="inline-flex min-w-max items-center gap-2 text-xs font-extrabold text-[#f44a14] hover:underline">Discuss services <ArrowRight className="size-4" /></a></div>
         </div>
         <div className="dn-service-grid">
           {ordered.map((service, index) => {
             const Icon = icons[service.iconKey] || icons[service.slug] || CodeXml;
             return <article key={service.id} className="dev-card dn-service-card group">
-              <div className="dn-service-card-top"><span className={`dev-icon ${index % 3 === 1 ? 'dev-icon-dark' : ''}`}><Icon className="size-6" strokeWidth={2} aria-hidden="true" /></span><ArrowRight className="dn-service-arrow size-5 text-[#ff4b16] transition-transform group-hover:translate-x-1" aria-hidden="true" /></div>
-              <div className="dn-service-copy"><h3>{service.title}</h3><p className="dev-copy">{service.description}</p></div>
+              <div className="dn-service-card-top"><span className={`dev-icon ${index % 3 === 1 ? 'dev-icon-dark' : ''}`}><Icon className="size-6" strokeWidth={2} aria-hidden="true" /></span><h3>{service.title}</h3><ArrowRight className="dn-service-arrow size-5 text-[#ff4b16] transition-transform group-hover:translate-x-1" aria-hidden="true" /></div>
+              <p className="dn-service-description dev-copy">{service.description}</p>
               {(service.capabilities || []).length > 0 && <div className="dn-service-tags">{service.capabilities.slice(0, 3).map((item) => <span key={`${service.id}-${item}`}>{item}</span>)}</div>}
             </article>;
           })}

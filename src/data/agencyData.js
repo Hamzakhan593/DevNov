@@ -155,7 +155,9 @@ export const faq = [
 ];
 
 export const contact = {
-  provider: 'web3forms', // Planned, not connected in Module 1.
-  accessKey: '', // Later supplied from a public VITE_ env variable for Web3Forms.
+  provider: 'web3forms',
+  // Public form identifier, verified for the temporary contact inbox.
+  // VITE_WEB3FORMS_ACCESS_KEY can override this when the recipient changes.
+  accessKey: 'cafc6b88-2360-46ec-8d85-0582a67322ac',
   successMessage: 'Thanks for reaching out. We will respond as soon as possible.',
 };

@@ -11,7 +11,7 @@ export default function Process() {
           <SectionHeader
             eyebrow="Our process"
             id="process-heading"
-            title="A clear path from idea to impact."
+            title="A clear path from idea to impact"
             description="A practical, collaborative process that makes the next step clear before the work begins."
           />
           <a href="#contact" className="dev-secondary dn20-process-cta">Get started <ArrowRight className="size-4" aria-hidden="true" /></a>
@@ -25,8 +25,8 @@ export default function Process() {
                 <div className="dn20-process-step-top">
                   <span className="dn20-process-number">{String(index + 1).padStart(2, '0')}</span>
                   <span className="dn20-process-icon"><Icon className="size-5" aria-hidden="true" /></span>
+                  <h3>{step.title}</h3>
                 </div>
-                <h3>{step.title}</h3>
                 <p>{step.description}</p>
               </li>
             );

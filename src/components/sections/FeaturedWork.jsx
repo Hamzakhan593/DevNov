@@ -64,7 +64,7 @@ function WorkLoadingState() {
 }
 
 function EmptyPortfolioState({ unavailable = false }) {
-  const title = unavailable ? 'The portfolio is temporarily offline.' : 'Real work, shown with the context it deserves.';
+  const title = unavailable ? 'The portfolio is temporarily offline' : 'Real work, shown with the context it deserves';
   const description = unavailable
     ? 'We are reconnecting our published case studies. Contact us to discuss work relevant to your project.'
     : 'Our first public case studies are being prepared, with approved visuals and the context behind each project.';
@@ -128,7 +128,7 @@ export default function FeaturedWork() {
     <section id="work" className="dn-work-section bg-[#f7f9fc] py-8 sm:py-12" aria-labelledby="work-heading">
       <div className="dev-container"><div className="dev-featured dn-work-panel">
         <div className="dn-work-intro">
-          <div className="dn-work-copy"><p className="eyebrow !text-[#ff9a78]">Selected work</p><h2 id="work-heading" className="dn-work-heading">{hasProjects ? 'Software built around real business goals.' : portfolioUnavailable ? 'The portfolio will be back shortly.' : 'The portfolio is being built the right way.'}</h2><p className="dn-work-description">{hasProjects ? 'Explore our work, from the product challenge to the technology and live experience.' : portfolioUnavailable ? 'Our published case studies are temporarily unavailable. Please check back soon or contact us to discuss relevant work.' : 'We are preparing our first public case studies, with hosted projects, clear visuals and the story behind the work.'}</p></div>
+          <div className="dn-work-copy"><p className="eyebrow !text-[#ff9a78]">Selected work</p><h2 id="work-heading" className="dn-work-heading">{hasProjects ? 'Software built around real business goals' : portfolioUnavailable ? 'The portfolio will be back shortly' : 'The portfolio is being built the right way'}</h2><p className="dn-work-description">{hasProjects ? 'Explore our work, from the product challenge to the technology and live experience.' : portfolioUnavailable ? 'Our published case studies are temporarily unavailable. Please check back soon or contact us to discuss relevant work.' : 'We are preparing our first public case studies, with hosted projects, clear visuals and the story behind the work.'}</p></div>
           <div className="dn-work-ctas"><a href="#contact" className="dev-primary">Start a project <ArrowRight className="size-4" aria-hidden="true" /></a><a href="#services" className="dn-work-secondary">Our services <ArrowUpRight className="size-4" aria-hidden="true" /></a></div>
         </div>
 

@@ -22,31 +22,31 @@
 .dn-work-empty-copy { padding: 20px; }
 .dn-work-empty-title { max-width: 510px; margin-top: 18px; color: #fff; font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 800; line-height: 1.2; letter-spacing: -.035em; text-wrap: balance; overflow-wrap: break-word; }
 .dn-work-empty .dev-primary { max-width: 100%; padding-inline: 13px; font-size: .76rem; }
-.dn-project-card { position: relative; display: flex; min-width: 0; height: 100%; flex-direction: column; overflow: hidden; border: 1px solid #3c5264; border-radius: 18px; background: radial-gradient(ellipse at 100% 100%, #ff4b160c, transparent 65%), linear-gradient(145deg, #1c3143, #132333); box-shadow: 0 12px 26px #00000033, inset 0 1px 0 #ffffff0a; transition: border-color .25s, box-shadow .25s, transform .25s; }
-.dn-project-card:focus-within { border-color: #ff9b75; }
-.dn-project-preview { position: relative; display: grid; width: calc(100% - 18px); aspect-ratio: 16 / 9; flex: none; place-items: center; overflow: hidden; margin: 9px 9px 0; padding: 6px; border: 1px solid #435a6c; border-radius: 11px; background: #0a1722; cursor: pointer; }
+.dn-project-card { position: relative; display: flex; min-width: 0; height: 100%; flex-direction: column; overflow: hidden; border: 1px solid #dfb99c; border-radius: 18px; background: radial-gradient(ellipse at 100% 100%, #ffd0b366, transparent 65%), linear-gradient(145deg, #fff5e9, #f9e7da); box-shadow: 0 12px 26px #00000029, inset 0 1px 0 #fffaf2; transition: border-color .25s, box-shadow .25s, transform .25s; }
+.dn-project-card:focus-within { border-color: #c55a2b; }
+.dn-project-preview { position: relative; display: grid; width: calc(100% - 18px); aspect-ratio: 16 / 9; flex: none; place-items: center; overflow: hidden; margin: 9px 9px 0; padding: 6px; border: 1px solid #d7b99f; border-radius: 11px; background: linear-gradient(145deg, #f0dcca, #faecde); cursor: pointer; }
 .dn-project-preview img { display: block; width: 100%; height: 100%; border-radius: 6px; object-fit: contain; }
-.dn-project-preview-icon { position: absolute; right: 11px; bottom: 11px; display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid #718291; border-radius: 9px; background: #101b27f2; color: #ffb28f; box-shadow: 0 3px 10px #00000030; }
+.dn-project-preview-icon { position: absolute; right: 11px; bottom: 11px; display: grid; width: 30px; height: 30px; place-items: center; border: 1px solid #c79c7e; border-radius: 9px; background: #fff0e2f5; color: #a83d15; box-shadow: 0 3px 10px #6a3c2026; }
 .dn-project-preview:focus-visible { outline-offset: -4px; }
-.dn-project-placeholder { display: flex; height: 100%; width: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border-radius: 6px; background: linear-gradient(135deg, #213a4e, #142636); color: #bdceda; }
-.dn-project-placeholder > span:first-child { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid #805139; border-radius: 14px; background: #ff4b1612; color: #ffb28f; }
+.dn-project-placeholder { display: flex; height: 100%; width: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 12px; border-radius: 6px; background: linear-gradient(135deg, #ffe0c7, #f7eadd); color: #596a78; }
+.dn-project-placeholder > span:first-child { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid #dfa67e; border-radius: 14px; background: #fff1e3; color: #a83d15; }
 .dn-project-placeholder > span:last-child { display: flex; align-items: center; gap: 7px; font-size: .72rem; font-weight: 600; }
 .dn-project-content { display: flex; min-width: 0; flex: 1; flex-direction: column; padding: 14px; }
-.dn-project-category { align-self: flex-start; max-width: 100%; padding: 4px 8px; border: 1px solid #a96343; border-radius: 6px; background: #ff4b1612; color: #ffb28f; font-size: .625rem; font-weight: 700; line-height: 1.4; letter-spacing: .035em; overflow-wrap: anywhere; }
-.dn-project-title { margin-top: 9px; color: #f7faff; font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 800; line-height: 1.3; letter-spacing: -.03em; text-wrap: balance; overflow-wrap: anywhere; }
-.dn-project-summary { display: -webkit-box; margin-top: 8px; overflow: hidden; color: #bdcdd9; font-size: .8rem; line-height: 1.6; text-wrap: pretty; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
+.dn-project-category { align-self: flex-start; max-width: 100%; padding: 4px 8px; border: 1px solid #e3ae88; border-radius: 6px; background: #ffe0c9; color: #8b3c18; font-size: .625rem; font-weight: 700; line-height: 1.4; letter-spacing: .035em; overflow-wrap: anywhere; }
+.dn-project-title { margin-top: 9px; color: #132333; font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 800; line-height: 1.3; letter-spacing: -.03em; text-wrap: balance; overflow-wrap: anywhere; }
+.dn-project-summary { display: -webkit-box; margin-top: 8px; overflow: hidden; color: #536273; font-size: .8rem; line-height: 1.6; text-wrap: pretty; overflow-wrap: anywhere; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; }
 .dn-project-tools { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 5px; margin: 10px 0 0; padding: 0; list-style: none; }
-.dn-project-tools li { min-width: 0; max-width: 100%; border: 1px solid #496174; border-radius: 6px; background: #253d50; padding: 4px 7px; color: #d6e3ec; font-size: .65rem; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.dn-project-tools li { min-width: 0; max-width: 100%; border: 1px solid #dbb99d; border-radius: 6px; background: #ffe7d2; padding: 4px 7px; color: #744123; font-size: .65rem; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
 .dn-project-actions { display: grid; gap: 8px; margin-top: auto; padding-top: 12px; }
 .dn-project-primary { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 10px; border: 1px solid #ff6a3d; border-radius: 9px; background: #ff4b16; padding: 9px 11px; color: #101b27; font-size: .76rem; font-weight: 800; line-height: 1.4; text-align: left; box-shadow: 0 4px 12px #ff4b1620; transition: border-color .2s, background .2s; }
 .dn-project-primary:hover { border-color: #ff9c7c; background: #ff7148; }
 .dn-project-primary svg, .dn-project-secondary-actions svg { flex-shrink: 0; }
 .dn-project-secondary-actions { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; }
-.dn-project-secondary-actions a { display: inline-flex; min-width: 0; min-height: 44px; align-items: center; justify-content: center; gap: 6px; padding: 7px 6px; border: 1px solid #4c6375; border-radius: 8px; background: #ffffff04; color: #dce7ef; font-size: .73rem; font-weight: 650; line-height: 1.4; transition: border-color .2s, background .2s; }
+.dn-project-secondary-actions a { display: inline-flex; min-width: 0; min-height: 44px; align-items: center; justify-content: center; gap: 6px; padding: 7px 6px; border: 1px solid #cfb59f; border-radius: 8px; background: #fff3e7; color: #34495a; font-size: .73rem; font-weight: 650; line-height: 1.4; transition: border-color .2s, background .2s; }
 .dn-project-secondary-actions a:only-child { grid-column: 1 / -1; }
-.dn-project-secondary-actions a svg { color: #ffb28f; }
-.dn-project-secondary-actions a:hover { border-color: #ff9b75; background: #ff4b160d; }
-.dn-project-card :is(button, a):focus-visible { outline: 3px solid #ffc4ab; outline-offset: -3px; }
+.dn-project-secondary-actions a svg { color: #b74617; }
+.dn-project-secondary-actions a:hover { border-color: #bd7248; background: #ffe8d5; }
+.dn-project-card :is(button, a):focus-visible { outline: 3px solid #132333; outline-offset: -3px; }
 .dn-project-card .dn-project-primary:focus-visible { outline-color: #101b27; }
 @media (min-width: 400px) {
   .dn-work-panel { padding-inline: 22px; }
@@ -80,7 +80,7 @@
   .dn-work-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .dn-project-card:hover { transform: translateY(-3px); border-color: #e9835b; box-shadow: 0 18px 34px #0000004d, 0 0 0 1px #ff4b1610; }
+  .dn-project-card:hover { transform: translateY(-3px); border-color: #e08d5e; box-shadow: 0 18px 34px #00000033, 0 0 0 1px #ff4b1615; }
 }
 @media (prefers-reduced-motion: reduce) {
   .dn-work-filter, .dn-work-secondary, .dn-project-card, .dn-project-primary, .dn-project-secondary-actions a { transition: none; }

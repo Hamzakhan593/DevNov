@@ -91,7 +91,7 @@ export default function TechMarquee() {
             <div className="dn17-stack-mark" aria-hidden="true"><Layers3 size={23} strokeWidth={2.25} /></div>
             <div>
               <div className="dn17-eyebrow">THE TOOLS BEHIND THE IDEAS</div>
-              <h2 id="dn17-stack-title" className="dn17-heading">Our <span>stack.</span></h2>
+              <h2 id="dn17-stack-title" className="dn17-heading">Our <span>stack</span></h2>
               <p className="dn17-subtitle">Modern engineering, intelligent workflows and useful AI integrations.</p>
             </div>
           </div>
