@@ -16,7 +16,7 @@ export default function WhyUs() {
           <SectionHeader
             id="why-heading"
             eyebrow="Why DevNov"
-            title={<>A partner for<br />your next big idea.</>}
+            title="A partner for your next big idea."
             description="Clear thinking, thoughtful craft and dependable delivery make ambitious work feel more manageable."
           />
           <aside className="dn20-value-aside" aria-label="How DevNov approaches a project">

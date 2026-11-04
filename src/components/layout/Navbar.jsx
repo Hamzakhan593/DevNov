@@ -3,11 +3,89 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Menu, X, Zap } from 'lucide-react';
 import { agency, team as legacyTeam } from '../../data/agencyData.js';
 import managedTeam from '../../data/team.json';
+import './mobile-navigation.css';
 
 // These anchors are guaranteed by the public application. Team is inserted
 // only when a real, approved profile exists.
 const activeSections = new Set(['top', 'services', 'work', 'why-devnov', 'process', 'faq', 'contact']);
 const isSafeExternalUrl = (value) => typeof value === 'string' && /^https:\/\/[^\s]+$/i.test(value.trim());
+
+function MobileMenuSheet({ links, activeSection, bookingUrl, onNavigate, onClose, triggerRef, reducedMotion }) {
+  const dialogRef = useRef(null);
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    const previousRootOverflow = document.documentElement.style.overflow;
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    closeRef.current?.focus({ preventScroll: true });
+
+    return () => {
+      dialog.close();
+      document.body.style.overflow = previousOverflow;
+      document.documentElement.style.overflow = previousRootOverflow;
+      if (!window.matchMedia('(min-width: 1024px)').matches) {
+        triggerRef.current?.focus({ preventScroll: true });
+      }
+    };
+  }, [triggerRef]);
+
+  return (
+    <motion.dialog
+      ref={dialogRef}
+      id="devnov-mobile-menu"
+      aria-labelledby="devnov-mobile-menu-title"
+      className="dn-mobile-dialog"
+      initial={{ opacity: reducedMotion ? 1 : 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: reducedMotion ? 0 : .2 }}
+      onCancel={(event) => { event.preventDefault(); onClose(); }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') { event.preventDefault(); onClose(); }
+        if (event.key === 'Tab') {
+          const dialog = event.currentTarget;
+          const focusable = [...dialog.querySelectorAll('a[href], button:not([disabled]), [tabindex="0"]')];
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (!first) { event.preventDefault(); dialog.focus(); return; }
+          if (event.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+            event.preventDefault(); last.focus();
+          } else if (!event.shiftKey && (document.activeElement === last || document.activeElement === dialog)) {
+            event.preventDefault(); first.focus();
+          }
+        }
+      }}
+      onClick={(event) => { if (event.target === event.currentTarget) onClose(); }}
+    >
+      <motion.div
+        className="dn-mobile-sheet"
+        initial={reducedMotion ? false : { y: '100%' }}
+        animate={{ y: 0 }}
+        exit={reducedMotion ? undefined : { y: '100%' }}
+        transition={{ duration: reducedMotion ? 0 : .26, ease: [.22, 1, .36, 1] }}
+      >
+        <div className="dn-mobile-sheet-handle" aria-hidden="true" />
+        <div className="dn-mobile-sheet-heading">
+          <div><p className="eyebrow">Explore DevNov</p><h2 id="devnov-mobile-menu-title">Where would you like to go?</h2></div>
+          <button ref={closeRef} type="button" onClick={onClose} className="dn-mobile-sheet-close" aria-label="Close navigation"><X size={20} aria-hidden="true" /></button>
+        </div>
+        <nav className="dn-mobile-sheet-links" aria-label="Mobile navigation">
+          {links.map((item) => (
+            <a key={item.id} href={item.href} aria-current={activeSection === item.id ? 'location' : undefined} onClick={() => onNavigate(item.id)} className={`dn-mobile-sheet-link ${activeSection === item.id ? 'is-active' : ''}`}>
+              <span>{item.label}</span><ArrowRight size={17} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
+        <a href="#contact" onClick={() => onNavigate('contact')} className="dev-primary dn-mobile-sheet-cta">Let's Talk <ArrowRight size={17} aria-hidden="true" /></a>
+        {bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer" onClick={onClose} className="dn-mobile-book-call">Book a call</a>}
+      </motion.div>
+    </motion.dialog>
+  );
+}
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -45,11 +123,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [hasTeam]);
   useEffect(() => {
-    if (!menuOpen) return undefined;
-    const onKeyDown = (event) => { if (event.key === 'Escape') { setMenuOpen(false); toggleRef.current?.focus(); } };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [menuOpen]);
+    const desktop = window.matchMedia('(min-width: 1024px)');
+    const onBreakpointChange = (event) => { if (event.matches) setMenuOpen(false); };
+    desktop.addEventListener('change', onBreakpointChange);
+    return () => desktop.removeEventListener('change', onBreakpointChange);
+  }, []);
   return (
     <>
       <a className="skip-link" href="#main-content">Skip to content</a>
@@ -63,11 +141,13 @@ export default function Navbar() {
             const isActive = activeSection === item.id;
             return <a key={item.id} href={item.href} aria-current={isActive ? 'page' : undefined} onClick={() => setActiveSection(item.id)} className={`dn15-nav-link rounded-xl px-3 py-3 text-[14px] font-extrabold transition-colors hover:bg-[#fff1eb] hover:text-[#f34b1a] ${isActive ? 'dn15-nav-link-active text-[#f34b1a]' : 'text-[#192635]'}`}>{item.label}</a>;
           })}</div>
-          <a className="dev-primary dn15-nav-cta ml-auto hidden shrink-0 lg:inline-flex" href="#contact">Let's Talk <ArrowRight className="size-4" aria-hidden="true" /></a>
-          <button ref={toggleRef} className="grid size-11 place-items-center rounded-xl border border-[#ced9e3] bg-[#f5f8fb] text-[#101b27] lg:hidden" type="button" onClick={() => setMenuOpen((current) => !current)} aria-expanded={menuOpen} aria-controls="devnov-mobile-menu" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button>
+          <a className="dev-primary dn15-nav-cta ml-auto shrink-0" href="#contact">Let's Talk <ArrowRight className="size-4" aria-hidden="true" /></a>
         </nav>
-        <AnimatePresence initial={false}>{menuOpen && <motion.div id="devnov-mobile-menu" initial={prefersReducedMotion ? false : { opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, height: 0 }} transition={{ duration: prefersReducedMotion ? 0 : .2 }} className="overflow-hidden border-t border-[#e4eaf0] bg-white shadow-xl lg:hidden"><div className="dev-container flex flex-col gap-1 py-4">{navLinks.map((item) => <a key={item.id} href={item.href} aria-current={activeSection === item.id ? 'page' : undefined} onClick={() => { setActiveSection(item.id); closeMenu(); }} className={`mobile-nav-link ${activeSection === item.id ? 'mobile-nav-link-active' : ''}`}>{item.label}</a>)}<a href="#contact" onClick={closeMenu} className="dev-primary mt-2">Let's Talk <ArrowRight className="size-4" /></a>{bookingUrl && <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="p-3 text-center text-xs font-semibold text-[#f34b1a]">Book a call</a>}</div></motion.div>}</AnimatePresence>
       </header>
+      <button ref={toggleRef} className="dn-mobile-menu-trigger" type="button" onClick={() => setMenuOpen(true)} aria-expanded={menuOpen} aria-controls="devnov-mobile-menu" aria-haspopup="dialog" aria-label="Open navigation"><Menu size={19} aria-hidden="true" /><span>Menu</span></button>
+      <AnimatePresence initial={false}>
+        {menuOpen && <MobileMenuSheet links={navLinks} activeSection={activeSection} bookingUrl={bookingUrl} onNavigate={(id) => { setActiveSection(id); closeMenu(); }} onClose={closeMenu} triggerRef={toggleRef} reducedMotion={prefersReducedMotion} />}
+      </AnimatePresence>
     </>
   );
 }

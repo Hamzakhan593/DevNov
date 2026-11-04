@@ -1,5 +1,6 @@
-import { ArrowRight, ArrowUpRight, Github, Globe2, Mail, Zap } from 'lucide-react';
+import { ArrowUp, ArrowUpRight, Github, Globe2, Mail, Zap } from 'lucide-react';
 import { agency } from '../../data/agencyData.js';
+import './footer.css';
 const validHttps = (url) => typeof url === 'string' && /^https:\/\/[a-z0-9.-]+(?:\:[0-9]+)?(?:[/?#][^\s]*)?$/i.test(url.trim());
 const validEmail = (email) => typeof email === 'string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
 export default function Footer() {
@@ -15,30 +16,30 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="dn20-footer" aria-label="Footer">
-      <div className="dev-container dn20-footer-main">
-        <div className="dn20-footer-brand">
-          <a href="#top" className="inline-flex items-center gap-1.5 text-[22px] font-extrabold tracking-[-.06em] text-white">
-            <Zap className="size-8 fill-[#ff4b16] text-[#ff4b16]" aria-hidden="true" />{agency.brandName}
+    <footer className="dn20-footer dn-footer" aria-label="Footer">
+      <div className="dev-container dn-footer-main">
+        <div className="dn-footer-brand">
+          <a href="#top" className="dn-footer-logo" aria-label={`${agency.brandName} homepage`}>
+            <Zap size={31} fill="currentColor" aria-hidden="true" /><span>{agency.brandName}</span>
           </a>
           <p>{agency.summary}</p>
+          {links.length > 0 && <div className="dn-footer-socials">
+            {links.map((link) => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label || 'External social profile'}>{link.id === 'github' ? <Github size={18} aria-hidden="true" /> : <Globe2 size={18} aria-hidden="true" />}</a>)}
+          </div>}
         </div>
 
-        <nav aria-label="Footer navigation" className="dn20-footer-nav">
-          <p>Explore</p>
+        <nav aria-label="Footer navigation" className="dn-footer-nav">
+          <p className="dn-footer-label">Explore</p>
           <div>{navLinks.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}</div>
         </nav>
 
-        <div className="dn20-footer-contact">
-          <p className="dn20-footer-label">Have a project in mind?</p>
-          <a href="#contact" className="dn20-footer-cta">Start a conversation <ArrowUpRight className="size-4" aria-hidden="true" /></a>
-          <div className="dn20-footer-socials">
-            {links.map((link) => <a key={link.url} href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.label || 'External social profile'}>{link.id === 'github' ? <Github className="size-4" /> : <Globe2 className="size-4" />}</a>)}
-            {email && <a href={`mailto:${email}`} aria-label="Email DevNov"><Mail className="size-4" /></a>}
-          </div>
+        <div className="dn-footer-contact">
+          <p className="dn-footer-label">Have a project in mind?</p>
+          <a href="#contact" className="dn-footer-cta"><span>Start a conversation</span><ArrowUpRight size={22} aria-hidden="true" /></a>
+          {email && <a href={`mailto:${email}`} className="dn-footer-email"><Mail size={16} aria-hidden="true" /><span>{email}</span></a>}
         </div>
       </div>
-      <div className="dn20-footer-bottom"><div className="dev-container"><span>© {new Date().getFullYear()} {agency.brandName}. All rights reserved.</span><span>Thoughtful software. Real impact. <ArrowRight className="ml-1 inline size-3 text-[#ff6a3b]" aria-hidden="true" /></span></div></div>
+      <div className="dn-footer-bottom"><div className="dev-container"><span>© {new Date().getFullYear()} {agency.brandName}. All rights reserved.</span><a href="#top">Back to top <ArrowUp size={15} aria-hidden="true" /></a></div></div>
     </footer>
   );
 }

@@ -14,7 +14,7 @@ export default function Team() {
     <section id="team" className="dev-section bg-[#f7f9fc]" aria-labelledby="team-heading">
       <div className="dev-container">
         <div className="flex flex-col items-start justify-between gap-5 lg:flex-row lg:items-end">
-          <SectionHeader eyebrow="Our team" title={<>The people behind<br />the work.</>} id="team-heading" description="Profiles are shared only with the person's approval." />
+          <SectionHeader eyebrow="Our team" title="The people behind the work." id="team-heading" description="Profiles are shared only with the person's approval." />
           <a href="#contact" className="dev-primary">Work with DevNov <ArrowUpRight className="size-4" /></a>
         </div>
         <div className="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

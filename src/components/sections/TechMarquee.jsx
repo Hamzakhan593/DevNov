@@ -59,10 +59,10 @@ const automationIds = new Set([
 function StackItem({ tech, isAi }) {
   const Icon = stackIcons[tech.iconKey] || stackIcons[tech.slug] || Wrench;
   return (
-    <div className={`dn17-chip ${isAi ? 'dn17-chip-ai' : 'dn17-chip-core'}`} title={tech.category}>
+    <li className={`dn17-chip ${isAi ? 'dn17-chip-ai' : 'dn17-chip-core'}`} title={tech.category}>
       <span className="dn17-chip-icon" aria-hidden="true"><Icon size={19} strokeWidth={2.1} /></span>
       <span className="dn17-chip-name">{tech.label}</span>
-    </div>
+    </li>
   );
 }
 
@@ -104,9 +104,9 @@ export default function TechMarquee() {
               <span className="dn17-group-symbol dn17-symbol-core" aria-hidden="true"><Code2 size={17} strokeWidth={2.2}/></span>
               <div><h3>Core Development</h3><p>Web, backend, databases &amp; infrastructure</p></div>
             </div>
-            <div className="dn17-grid">
+            <ul className="dn17-grid" aria-label="Core development technologies">
               {core.map((tech) => <StackItem key={tech.id} tech={tech} isAi={false} />)}
-            </div>
+            </ul>
           </div>
 
           {ai.length > 0 && (
@@ -115,9 +115,9 @@ export default function TechMarquee() {
                 <span className="dn17-group-symbol dn17-symbol-ai" aria-hidden="true"><BrainCircuit size={18} strokeWidth={2.2}/></span>
                 <div><h3>AI &amp; Automation</h3><p>Agents, AI apps &amp; smart business workflows</p></div>
               </div>
-              <div className="dn17-grid">
+              <ul className="dn17-grid" aria-label="AI and automation technologies">
                 {ai.map((tech) => <StackItem key={tech.id} tech={tech} isAi />)}
-              </div>
+              </ul>
             </div>
           )}
         </div>

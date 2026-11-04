@@ -11,7 +11,7 @@ export default function Process() {
           <SectionHeader
             eyebrow="Our process"
             id="process-heading"
-            title={<>A clear path<br />from idea to impact.</>}
+            title="A clear path from idea to impact."
             description="A practical, collaborative process that makes the next step clear before the work begins."
           />
           <a href="#contact" className="dev-secondary dn20-process-cta">Get started <ArrowRight className="size-4" aria-hidden="true" /></a>

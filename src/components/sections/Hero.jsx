@@ -28,19 +28,21 @@ const capabilities = [
 function HeroArtwork() {
   return (
     <div className="dn15-hero-art" aria-label="Illustrative black-and-white portrait beside DevNov capability cards">
-      <div className="dn15-orange-stroke" aria-hidden="true" />
-      <div className="dn15-orange-shape" aria-hidden="true" />
-      <img
-        src="/devnov-hero-portrait.webp"
-        alt="Illustrative monochrome portrait used as a visual design element, not a DevNov team member"
-        className="dn15-portrait"
-        width="775"
-        height="705"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-      />
-      <div className="dn21-hero-proof" aria-hidden="true">
+      <div className="dn15-portrait-scene">
+        <div className="dn15-orange-stroke" aria-hidden="true" />
+        <div className="dn15-orange-shape" aria-hidden="true" />
+        <img
+          src="/devnov-hero-portrait.webp"
+          alt="Illustrative monochrome portrait used as a visual design element, not a DevNov team member"
+          className="dn15-portrait"
+          width="775"
+          height="705"
+          loading="eager"
+          decoding="async"
+          fetchPriority="high"
+        />
+      </div>
+      <div className="dn21-hero-proof">
         <span className="dn21-hero-proof-icon"><Sparkles size={16} strokeWidth={2.3} /></span>
         <span>
           <strong>Start with clarity</strong>
@@ -74,20 +76,20 @@ export default function Hero() {
             id="hero-heading"
             className="dn15-title"
           >
-            Digital products built to <span>move your business forward.</span>
+            Digital products built to <span>move your business forward</span>
           </motion.h1>
           <motion.p {...reveal(reduced, 0.18)} className="dn15-description">
-            {agency.brandName} partners with founders and growing teams to turn complex ideas into clear, useful web, mobile and AI products—from early strategy through launch.
+            {agency.brandName} helps founders and businesses design and build useful web, mobile and AI products—from concept to launch.
           </motion.p>
           <motion.div {...reveal(reduced, 0.21)} className="dn21-hero-signals" aria-label="How DevNov approaches product work">
             <span><BadgeCheck className="size-4" aria-hidden="true" /> Clear scope before build</span>
             <span><BadgeCheck className="size-4" aria-hidden="true" /> Designed around real users</span>
           </motion.div>
           <motion.div {...reveal(reduced, 0.25)} className="dn15-cta-row">
-            <a href="#contact" className="dev-primary dn15-main-cta">Discuss your project <ArrowRight className="size-5" aria-hidden="true" /></a>
+            <a href="#contact" className="dev-primary dn15-main-cta"><span>Discuss your project</span><ArrowRight className="size-5" aria-hidden="true" /></a>
             <a href="#work" className="dev-secondary dn15-second-cta">
               <span className="dn15-play-icon"><Play className="size-3 fill-white" aria-hidden="true" /></span>
-              Explore our work
+              <span>Explore our work</span>
             </a>
           </motion.div>
         </div>

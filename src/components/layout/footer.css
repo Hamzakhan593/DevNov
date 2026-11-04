@@ -1,0 +1,60 @@
+footer.dn-footer {
+  border-top: 1px solid #324657;
+  background: radial-gradient(ellipse at 100% 0, rgba(255, 75, 22, .10), transparent 55%), linear-gradient(115deg, #101b27, #142736);
+}
+footer.dn-footer::before { content: none; }
+.dn-footer-main {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(150px, .6fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 64px);
+  padding-block: 44px 36px;
+}
+.dn-footer-logo { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; border-radius: 7px; color: #fff; font-size: 25px; font-weight: 850; letter-spacing: -.065em; }
+.dn-footer-logo svg { flex: none; color: #ff642f; }
+.dn-footer-brand > p { max-width: 34ch; margin-top: 9px; color: #b6c7d4; font-size: .83rem; line-height: 1.65; text-wrap: pretty; }
+.dn-footer .dn-footer-label { color: #ffac8c; font-size: .65rem; font-weight: 800; line-height: 1.4; letter-spacing: .09em; text-transform: uppercase; }
+.dn-footer-nav { padding-top: 9px; }
+.dn-footer-nav > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 16px; margin-top: 8px; }
+.dn-footer-nav a { display: flex; align-items: center; min-height: 44px; border-radius: 7px; color: #d7e2eb; font-size: .82rem; font-weight: 600; transition: color .18s; }
+.dn-footer-nav a:hover { color: #ffac8c; }
+.dn-footer-contact { min-width: 0; padding: 20px; border: 1px solid #3b4e5b; border-radius: 16px; background: linear-gradient(125deg, rgba(255,255,255,.055), rgba(255,255,255,.015)); }
+.dn-footer-cta { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 48px; margin-top: 5px; border-radius: 7px; color: #fff; font-size: clamp(1.06rem, 1.6vw, 1.3rem); font-weight: 750; line-height: 1.3; letter-spacing: -.035em; text-wrap: balance; transition: color .18s; }
+.dn-footer-cta svg { flex: none; color: #ff9169; }
+.dn-footer-cta:hover { color: #ffb294; }
+.dn-footer-email { display: flex; align-items: center; gap: 9px; min-height: 44px; border-radius: 7px; color: #bdcdda; font-size: .8rem; line-height: 1.5; transition: color .18s; }
+.dn-footer-email svg { flex: none; color: #ff9169; }
+.dn-footer-email span { min-width: 0; overflow-wrap: anywhere; }
+.dn-footer-email:hover { color: #fff; }
+.dn-footer-socials { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+.dn-footer-socials a { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #3d5262; border-radius: 11px; color: #cddce6; transition: color .18s, border-color .18s, background .18s; }
+.dn-footer-socials a:hover { border-color: #ff9169; background: #253644; color: #ffac8c; }
+.dn-footer-bottom { border-top: 1px solid #304352; }
+.dn-footer-bottom > div { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 68px; padding-block: 10px; color: #b0c1cf; font-size: .73rem; line-height: 1.5; }
+.dn-footer-bottom a { display: inline-flex; flex: none; align-items: center; gap: 7px; min-height: 44px; border-radius: 7px; color: #d9e4ec; font-weight: 650; }
+.dn-footer-bottom a:hover { color: #ffac8c; }
+.dn-footer a:focus-visible { outline: 3px solid #ff9b75; outline-offset: 3px; }
+@media (min-width: 681px) and (max-width: 1023px) {
+  .dn-footer-main { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 36px; }
+  .dn-footer-nav { grid-column: 1 / -1; grid-row: 2; padding-top: 0; }
+  .dn-footer-nav > div { grid-template-columns: repeat(6, minmax(0, 1fr)); column-gap: 12px; }
+}
+@media (max-width: 680px) {
+  .dn-footer-main { grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: 28px 22px; }
+  .dn-footer-brand > p { max-width: 40ch; margin-top: 5px; font-size: .8rem; }
+  .dn-footer-contact { grid-row: 2; padding: 15px 17px; border-radius: 14px; }
+  .dn-footer-cta { min-height: 44px; margin-top: 3px; font-size: 1.18rem; }
+  .dn-footer-nav { padding-top: 0; }
+  .dn-footer-nav > div { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 12px; margin-top: 6px; }
+  .dn-footer-nav a { font-size: .8rem; }
+  .dn-footer-bottom > div { gap: 6px; min-height: 62px; font-size: .65rem; }
+  .dn-footer-bottom a { gap: 4px; font-size: .67rem; }
+}
+@media (max-width: 359px) {
+  .dn-footer-bottom > div { align-items: flex-start; flex-direction: column; padding-block: 12px; }
+  .dn-footer-bottom a { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dn-footer a { transition: none; }
+}

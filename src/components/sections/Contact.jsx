@@ -49,7 +49,7 @@ export default function Contact() {
   return (
     <section id="contact" className="dev-section bg-[#f7f9fc]" aria-labelledby="contact-heading">
       <div className="dev-container grid items-start gap-8 lg:grid-cols-[.82fr_1.18fr] lg:gap-12">
-        <div><SectionHeader eyebrow="Let's work together" id="contact-heading" title={<>Tell us what<br />you are building.</>} description="A short brief is enough to start a useful conversation about your idea, product or next release." />
+        <div><SectionHeader eyebrow="Let's work together" id="contact-heading" title="Tell us what you are building." description="A short brief is enough to start a useful conversation about your idea, product or next release." />
           <div className="mt-7 space-y-3">{email && <a href={`mailto:${email}`} className="dev-card flex items-center gap-3 p-4 text-sm font-bold text-[#101b27]"><Mail className="size-5 text-[#ff4b16]" />{email} <ArrowUpRight className="ml-auto size-4 text-[#ff4b16]" /></a>}{booking && <a href={booking} target="_blank" rel="noopener noreferrer" className="dev-card flex items-center gap-3 p-4 text-sm font-bold text-[#101b27]"><CalendarDays className="size-5 text-[#ff4b16]" />Book a call <ArrowUpRight className="ml-auto size-4 text-[#ff4b16]" /></a>}</div>
           <div className="dn20-contact-brief" aria-label="Helpful details to include in a project enquiry">
             <p>Not sure where to begin?</p>
